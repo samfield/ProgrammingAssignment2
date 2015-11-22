@@ -1,7 +1,20 @@
 ## Put comments here that give an overall description of what your
 ## functions do
 
+###The following functions handle the calculation and caching of an inverse matrix
+###Only requirement is that the matrix is a "square" matrix ie. nbr of cols = nbr of rows
+###1.)Both should be sourced to the work environment
+###2.)The objective matrix should be entered in makeCacheMatrix which should be assigned
+###For example a <- makeCacheMatrix(b) where b is the matrix
+###3.) the assigned object should be called with cacheSolve
+###4.) Cachesolve returns the solution either from cache or by solving&caching
+
+
 ## Write a short comment describing this function
+###This function is a so called closure function
+###It encloses the environment of the parent function and provides access to all of the listed functions 
+###It creates a special "matrix" object that can cache its inverse
+
 
 makeCacheMatrix <- function(x = matrix()) {
   inv <- NULL
@@ -19,6 +32,8 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## Write a short comment describing this function
+###cacheSolve provides a check if the matrix was already solved for its inverse and provides the result
+###Result is either provided by solving the provided matrix or by using the matrix that was already solved for its inverse
 
 cacheSolve <- function(x, ...) {
   inv <- x$getinv()
@@ -30,13 +45,7 @@ cacheSolve <- function(x, ...) {
   data <- x$get()
   inv <- solve(data, ...)
   x$setinv(inv)
-  inv
     ## Return a matrix that is the inverse of 'x'
+  inv
   }
-  
-b=matrix(c(1,4,2,8,4,9,1,3,5), nrow=3, ncol=3)
-solve(b)
-
-a <- makeCacheMatrix(b)
-cacheSolve(a)
 
